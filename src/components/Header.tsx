@@ -1,19 +1,38 @@
 'use client';
-import { Button, Navbar, NavbarCollapse, NavbarLink, NavbarToggle, TextInput } from 'flowbite-react';
+import {
+    Button,
+    Navbar,
+    NavbarCollapse,
+    NavbarLink,
+    NavbarToggle,
+    TextInput,
+} from 'flowbite-react';
 import Link from 'next/link';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    UserButton,
+} from '@clerk/nextjs';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ModeToggle } from './ModeToggle';
+import { useTheme } from 'next-themes';
+import { dark, neobrutalism } from '@clerk/themes';
 
-// import { dark, light } from '@clerk/themes';
 export default function Header() {
+    const { theme } = useTheme();
     const path = usePathname();
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
     const searchParams = useSearchParams();
+
+    const [hasMounted, setHasMounted] = useState(false);
+    useEffect(() => {
+        setHasMounted(true);
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,6 +49,7 @@ export default function Header() {
             setSearchTerm(searchTermFromUrl);
         }
     }, [searchParams]);
+
     return (
         <Navbar className='border-b-2'>
             <Link
@@ -41,6 +61,7 @@ export default function Header() {
                 </span>
                 Blog
             </Link>
+
             <form onSubmit={handleSubmit}>
                 <TextInput
                     type='text'
@@ -51,44 +72,43 @@ export default function Header() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </form>
+
             <Button className='w-12 h-10 lg:hidden' color='gray' pill>
                 <AiOutlineSearch />
             </Button>
+
             <div className='flex gap-2 md:order-2'>
                 <ModeToggle />
                 <SignedIn>
-                    <UserButton
-                        // appearance={{
-                        //     baseTheme: theme === 'light' ? light : dark,
-                        // }}
-                        userProfileUrl='/dashboard?tab=profile'
-                    />
+                    {hasMounted && (
+                        <UserButton
+                            appearance={{
+                                baseTheme: theme === 'dark' ? dark : neobrutalism,
+                            }}
+                            userProfileUrl='/dashboard?tab=profile'
+                        />
+                    )}
                 </SignedIn>
                 <SignedOut>
-                    <Link href='/sign-in'>
+                    <SignInButton>
                         <Button className="bg-gradient-to-br from-purple-600 to-blue-500 !text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800" outline>
                             Sign In
                         </Button>
-                    </Link>
+                    </SignInButton>
                 </SignedOut>
                 <NavbarToggle />
             </div>
+
             <NavbarCollapse>
-                <Link href='/'>
-                    <NavbarLink active={path === '/'} as={'div'}>
-                        Home
-                    </NavbarLink>
-                </Link>
-                <Link href='/about'>
-                    <NavbarLink active={path === '/about'} as={'div'}>
-                        About
-                    </NavbarLink>
-                </Link>
-                <Link href='/projects'>
-                    <NavbarLink active={path === '/projects'} as={'div'}>
-                        Projects
-                    </NavbarLink>
-                </Link>
+                <NavbarLink active={path === '/'} as='div'>
+                    <Link href='/'>Home</Link>
+                </NavbarLink>
+                <NavbarLink active={path === '/about'} as='div'>
+                    <Link href='/about'>About</Link>
+                </NavbarLink>
+                <NavbarLink active={path === '/projects'} as='div'>
+                    <Link href='/projects'>Projects</Link>
+                </NavbarLink>
             </NavbarCollapse>
         </Navbar>
     );

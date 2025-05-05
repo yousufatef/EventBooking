@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@/providers/ClerkProvider";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ThemeModeScript } from "flowbite-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning >
+      <html lang="en" suppressHydrationWarning  >
+        <head>
+          <ThemeModeScript />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
