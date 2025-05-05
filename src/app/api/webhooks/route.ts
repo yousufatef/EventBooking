@@ -15,9 +15,12 @@ export async function POST(req: NextRequest) {
             console.log('userDeleted:', evt.data)
         }
 
-        return new Response('Webhook received', { status: 200 })
+        return NextResponse.json({ success: true });
     } catch (err) {
-        console.error('Error verifying webhook:', err)
-        return new Response('Error verifying webhook', { status: 400 })
+        console.error('Webhook error:', err);
+        return NextResponse.json(
+            { error: 'Webhook verification failed' },
+            { status: 400 }
+        );
     }
 }
