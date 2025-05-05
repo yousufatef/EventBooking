@@ -17,7 +17,7 @@ import {
     UserButton,
 } from '@clerk/nextjs';
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {useSearchParams } from 'next/navigation';
 import { ModeToggle } from './ModeToggle';
 import { useTheme } from 'next-themes';
 import { dark, neobrutalism } from '@clerk/themes';
@@ -25,7 +25,7 @@ import { dark, neobrutalism } from '@clerk/themes';
 export default function Header() {
     const { theme } = useTheme();
     const path = usePathname();
-    const router = useRouter();
+    // const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
     const searchParams = useSearchParams();
 
@@ -34,12 +34,12 @@ export default function Header() {
         setHasMounted(true);
     }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const urlParams = new URLSearchParams(searchParams);
-        urlParams.set('searchTerm', searchTerm);
-        const searchQuery = urlParams.toString();
-        router.push(`/search?${searchQuery}`);
+    const handleSubmit = () => {
+        // e.preventDefault();
+        // const urlParams = new URLSearchParams(searchParams);
+        // urlParams.set('searchTerm', searchTerm);
+        // const searchQuery = urlParams.toString();
+        // router.push(`/search?${searchQuery}`);
     };
 
     useEffect(() => {
