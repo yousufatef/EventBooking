@@ -1,27 +1,36 @@
 import { verifyWebhook } from '@clerk/nextjs/webhooks'
 import { NextRequest } from 'next/server'
-export async function POST(req: NextRequest) {
-    try {
-        const evt = await verifyWebhook(req)
 
-        // Do something with payload
-        // For this guide, log payload to console
+export async function POST(request: NextRequest) {
+    try {
+        const evt = await verifyWebhook(request, {
+            signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET,
+        })
+
         const { id } = evt.data
         const eventType = evt.type
-        console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
+
+        console.log(`Webhook received! ID: ${id}, Type: ${eventType}`)
         console.log('Webhook payload:', evt.data)
 
-        if (eventType === 'user.created') {
-            console.log('New user created:', evt.data.id)
-        }
-        if (eventType === 'user.updated') {
-            console.log('User updated:', evt.data.id)
-        }
-        if (eventType === 'user.deleted') {
-            console.log('User deleted:', evt.data.id)
+        switch (eventType) {
+            case 'user.created':
+                console.log('New user created:', evt.data)
+                // Add your user creation logic here
+                break
+            case 'user.updated':
+                console.log('User updated:', evt.data)
+                // Add your user update logic here
+                break
+            case 'user.deleted':
+                console.log('User deleted:', evt.data)
+                // Add your user deletion logic here
+                break
+            default:
+                console.log(`Unhandled event type: ${eventType}`)
         }
 
-        return new Response('Webhook received', { status: 200 })
+        return new Response('Webhook received successfully', { status: 200 })
     } catch (err) {
         console.error('Error verifying webhook:', err)
         return new Response('Error verifying webhook', { status: 400 })
