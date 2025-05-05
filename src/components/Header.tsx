@@ -17,7 +17,7 @@ import {
     UserButton,
 } from '@clerk/nextjs';
 import { useEffect, useState } from 'react';
-import {useSearchParams } from 'next/navigation';
+// import {useSearchParams } from 'next/navigation';
 import { ModeToggle } from './ModeToggle';
 import { useTheme } from 'next-themes';
 import { dark, neobrutalism } from '@clerk/themes';
@@ -27,7 +27,7 @@ export default function Header() {
     const path = usePathname();
     // const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
 
     const [hasMounted, setHasMounted] = useState(false);
     useEffect(() => {
@@ -42,13 +42,13 @@ export default function Header() {
         // router.push(`/search?${searchQuery}`);
     };
 
-    useEffect(() => {
-        const urlParams = new URLSearchParams(searchParams);
-        const searchTermFromUrl = urlParams.get('searchTerm');
-        if (searchTermFromUrl) {
-            setSearchTerm(searchTermFromUrl);
-        }
-    }, [searchParams]);
+    // useEffect(() => {
+    //     const urlParams = new URLSearchParams(searchParams);
+    //     const searchTermFromUrl = urlParams.get('searchTerm');
+    //     if (searchTermFromUrl) {
+    //         setSearchTerm(searchTermFromUrl);
+    //     }
+    // }, [searchParams]);
 
     return (
         <Navbar className='border-b-2'>
