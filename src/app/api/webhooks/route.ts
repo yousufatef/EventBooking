@@ -1,26 +1,10 @@
-import { verifyWebhook } from '@clerk/nextjs/webhooks'
-import { NextRequest, NextResponse } from 'next/server'
+import { WebhookEvent } from '@clerk/nextjs/server'
 
-export async function POST(req: NextRequest) {
-    try {
-        const evt = await verifyWebhook(req)
+export async function POST(request: Request) {
+    const payload: WebhookEvent = await request.json()
+    console.log(payload)
+}
 
-        if (evt.type === 'user.created') {
-            console.log('userCreated:', evt.data)
-        }
-        if (evt.type === 'user.updated') {
-            console.log('userUpdated:', evt.data)
-        }
-        if (evt.type === 'user.deleted') {
-            console.log('userDeleted:', evt.data)
-        }
-
-        return NextResponse.json({ success: true });
-    } catch (err) {
-        console.error('Webhook error:', err);
-        return NextResponse.json(
-            { error: 'Webhook verification failed' },
-            { status: 400 }
-        );
-    }
+export async function GET() {
+    return Response.json({ message: 'Hello World!' })
 }
