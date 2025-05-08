@@ -85,7 +85,6 @@ export default function Header() {
                             appearance={{
                                 baseTheme: theme === 'dark' ? dark : neobrutalism,
                             }}
-                            userProfileUrl='/dashboard?tab=profile'
                         />
                     )}
                 </SignedIn>
