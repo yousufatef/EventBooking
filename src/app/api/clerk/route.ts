@@ -15,7 +15,6 @@ export async function POST(request: Request) {
                     last_name,
                     image_url,
                     email_addresses,
-                    username,
                 } = payload.data;
                 try {
                     const user = await createOrUpdateUser({
@@ -24,7 +23,6 @@ export async function POST(request: Request) {
                         last_name,
                         image_url,
                         email_addresses,
-                        username,
                     });
                     if (user && payload.type === 'user.created') {
                         try {
