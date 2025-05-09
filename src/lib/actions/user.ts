@@ -1,6 +1,6 @@
 import { IUser } from "@/types/user.type";
-import { connect } from "../mongodb/mongoose";
-import User from "../models/user.model";
+import { connect } from "../database";
+import User from "../database/models/user.model";
 
 export const createOrUpdateUser = async ({
     id,
