@@ -20,8 +20,8 @@ const Header = () => {
                         </SheetTrigger>
                         <SheetContent side="left">
                             <div className="flex flex-col gap-2 py-4 p-6">
-                                <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-6">
-                                    <Calendar className="h-5 w-5" />
+                                <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-12">
+                                    <Calendar className="h-8 w-8" />
                                     <span>EventHub</span>
                                 </Link>
                                 <nav className="flex flex-col gap-3">
