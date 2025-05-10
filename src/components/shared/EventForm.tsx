@@ -35,6 +35,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
     }
     return (
         <div className="container">
+            <h2>{type}</h2>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
