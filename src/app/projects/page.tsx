@@ -1,7 +1,7 @@
-const page = () => {
+const ProjectPage = () => {
     return (
         <div>page</div>
     )
 }
 
-export default page
+export default ProjectPage;

@@ -1,4 +1,4 @@
-import { createOrUpdateUser, deleteUser } from '@/lib/actions/user';
+import { createOrUpdateUser, deleteUser } from '@/lib/actions/user.actions';
 import { clerkClient, WebhookEvent } from '@clerk/nextjs/server';
 export async function POST(request: Request) {
     const payload: WebhookEvent = await request.json()

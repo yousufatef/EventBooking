@@ -46,10 +46,6 @@ const eventSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "Category",
     },
-    organizer: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-    }
 }, { timestamps: true });
 
 

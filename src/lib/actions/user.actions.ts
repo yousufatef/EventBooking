@@ -32,6 +32,17 @@ export const createOrUpdateUser = async ({
     }
 }
 
+export const getUserById = async (userId: string) => {
+    try {
+        await connect()
+        const user = await User.findOne({ _id: userId })
+        return user
+    } catch (error) {
+        console.error("Error fetching user by ID:", error);
+        throw new Error("Failed to fetch user");
+    }
+}
+
 export const deleteUser = ({ id }: { id: string }) => {
     try {
         connect()
