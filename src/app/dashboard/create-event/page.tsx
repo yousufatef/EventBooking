@@ -11,11 +11,9 @@ const CreateEventPage = () => {
     if (isSignedIn && user.publicMetadata.isAdmin) {
         return (
             <>
-                <section className='bg-purple-50 py-5 md:py-10 '>
-                    <h3 className="text-center sm:text-left text-2xl font-bold">Create Event</h3>
-                </section>
+                
                 <div className="my-8">
-                    <EventForm type='create' />
+                    <EventForm type='create'/>
                 </div>
             </>
         )

@@ -1,6 +1,7 @@
 import { IUser } from "@/types/user.type";
 import { connect } from "../database";
 import User from "../database/models/user.model";
+import { handleError } from "../utils";
 
 export const createOrUpdateUser = async ({
     id,
@@ -27,8 +28,7 @@ export const createOrUpdateUser = async ({
 
     }
     catch (error) {
-        console.error("Error creating or updating user:", error);
-        throw new Error("Failed to create or update user");
+        handleError(error)
     }
 }
 
@@ -38,8 +38,7 @@ export const getUserById = async (userId: string) => {
         const user = await User.findOne({ _id: userId })
         return user
     } catch (error) {
-        console.error("Error fetching user by ID:", error);
-        throw new Error("Failed to fetch user");
+        handleError(error)
     }
 }
 
@@ -48,7 +47,6 @@ export const deleteUser = ({ id }: { id: string }) => {
         connect()
         return User.findOneAndDelete({ clerkId: id })
     } catch (error) {
-        console.error("Error deleting user:", error);
-        throw new Error("Failed to delete user");
+        handleError(error)
     }
 }
