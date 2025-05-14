@@ -48,6 +48,8 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
         }
         if (type === "create") {
             try {
+                console.log(values);
+
                 const newEvent = await createEvent(values);
                 if (newEvent) {
                     form.reset()

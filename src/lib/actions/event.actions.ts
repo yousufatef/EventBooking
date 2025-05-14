@@ -7,17 +7,25 @@ import { handleError } from "../utils"
 
 export const createEvent = async (values: IEvent) => {
     try {
-        await connect()
-        const newEvent = await Event.create(values)
-        console.log(newEvent);
+        await connect();
 
-        return JSON.parse(JSON.stringify(newEvent))
+        const { categoryId, ...rest } = values;
 
+        if (!categoryId) {
+            throw new Error('categoryId is required');
+        }
+
+        const newEvent = await Event.create({
+            ...rest,
+            category: categoryId, // ✅ mapping categoryId → category
+        });
+
+        return JSON.parse(JSON.stringify(newEvent));
+    } catch (error) {
+        handleError(error);
     }
-    catch (error) {
-        handleError(error)
-    }
-}
+};
+
 export const getEventById = async (eventId: string) => {
     try {
         await connect()
