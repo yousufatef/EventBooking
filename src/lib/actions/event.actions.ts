@@ -9,7 +9,31 @@ export const createEvent = async (values: IEvent) => {
     try {
         await connect()
         const newEvent = await Event.create(values)
+        console.log(newEvent);
+
         return JSON.parse(JSON.stringify(newEvent))
+
+    }
+    catch (error) {
+        handleError(error)
+    }
+}
+export const getEventById = async (eventId: string) => {
+    try {
+        await connect()
+        const event = await Event.findById(eventId)
+        return JSON.parse(JSON.stringify(event))
+
+    }
+    catch (error) {
+        handleError(error)
+    }
+}
+export const getAllEvents = async () => {
+    try {
+        await connect()
+        const events = await Event.find()
+        return JSON.parse(JSON.stringify(events))
 
     }
     catch (error) {

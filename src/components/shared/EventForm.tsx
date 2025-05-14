@@ -57,6 +57,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
                 handleError(error)
             }
         }
+
     }
 
     return (

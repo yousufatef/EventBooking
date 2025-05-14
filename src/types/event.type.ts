@@ -9,5 +9,6 @@ export interface IEvent {
     price?: string;
     isFree?: boolean;
     url?: string;
-    category?: { _id: string; name: string };
+    categoryId: string
 }
+export type SearchParamsProp = { params: { id: string } };

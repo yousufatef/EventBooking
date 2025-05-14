@@ -1,13 +1,13 @@
 import mongoose from 'mongoose'
 
-const init = false
-
 export const connect = async () => {
     mongoose.set('strictQuery', true)
-    if (init) {
-        console.log('MongoDB already initialized')
+
+    if (mongoose.connection.readyState >= 1) {
+        console.log('✅ MongoDB already connected')
         return
     }
+
     try {
         await mongoose.connect(process.env.MONGODB_URI as string, {
             dbName: "eventBooking",
@@ -17,8 +17,8 @@ export const connect = async () => {
             socketTimeoutMS: 45000,
             family: 4,
         })
-        console.log('MongoDB connected')
+        console.log('✅ MongoDB connected')
     } catch (error) {
-        console.error('MongoDB connection error:', error)
+        console.error('❌ MongoDB connection error:', error)
     }
 }
