@@ -4,10 +4,12 @@ import { Separator } from '@/components/ui/separator'
 import { getEventById } from '@/lib/actions/event.actions'
 import { Clock, MapPin } from 'lucide-react'
 
-type PageProps = {
+type Props = {
     params: { id: string };
 };
-const EventDetailsPage = async ({ params: { id } }: PageProps) => {
+
+const EventDetailsPage = async ({ params }: Props) => {
+    const { id } = params;
     const event = await getEventById(id)
 
     return (
