@@ -11,4 +11,3 @@ export interface IEvent {
     url?: string;
     categoryId: string
 }
-export type SearchParamsProp = { params: { id: string } };
