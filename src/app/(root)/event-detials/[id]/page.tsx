@@ -2,10 +2,10 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { getEventById } from '@/lib/actions/event.actions'
-import { SearchParamProps } from '@/types'
 import { Clock, MapPin } from 'lucide-react'
 
-const EventDetailsPage = async ({ params: { id } }: SearchParamProps) => {
+const EventDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     const event = await getEventById(id)
 
     return (
