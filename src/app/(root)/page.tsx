@@ -5,7 +5,6 @@ import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
-import EventFilters from "@/components/event-filters"
 import EventList from "@/components/event-list"
 
 export default function HomePage() {
@@ -33,7 +32,6 @@ export default function HomePage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input placeholder="Search events..." className="pl-10" />
           </div>
-          <EventFilters />
         </div>
       </section>
 
