@@ -2,18 +2,12 @@ import { getEventById } from "@/lib/actions/event.actions";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
 
-type PageProps = {
-    params: { id: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
+type SearchParamProps = {
+    params: { id: string }
 }
 
-const EventDetailsPage = async ({ params }: PageProps) => {
-    const { id } = params;
+const EventDetails = async ({ params: { id } }: SearchParamProps) => {
     const event = await getEventById(id);
-
-    if (!event) {
-        return <div>Event not found</div>;
-    }
 
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
@@ -69,4 +63,4 @@ const EventDetailsPage = async ({ params }: PageProps) => {
     );
 };
 
-export default EventDetailsPage;
+export default EventDetails;
