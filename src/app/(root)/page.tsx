@@ -7,14 +7,15 @@ import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import EventList from "@/components/event-list"
 
-export default function HomePage({
+export default async function HomePage({
   searchParams,
 }: {
-  searchParams: {
-    page?: string;
+  searchParams: Promise<{
+    pageNum?: string;
     query?: string;
-  };
+  }>;
 }) {
+  const searchParamsRe = await searchParams
   return (
     <main className="container mx-auto px-4 py-8">
       {/* Hero Section */}
@@ -41,7 +42,7 @@ export default function HomePage({
               placeholder="Search events..."
               className="pl-10"
               name="query"
-              defaultValue={searchParams.query || ''}
+              defaultValue={searchParamsRe.query || ''}
             />
           </div>
           <Button type="submit">Search</Button>
@@ -52,11 +53,11 @@ export default function HomePage({
       <section>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">
-            {searchParams.query
-              ? `Search Results for "${searchParams.query}"`
+            {searchParamsRe.query
+              ? `Search Results for "${searchParamsRe.query}"`
               : "Upcoming Events"}
           </h2>
-          {searchParams.query && (
+          {searchParamsRe.query && (
             <Button variant="outline" size="sm" asChild>
               <Link href="/">Clear Search</Link>
             </Button>
@@ -65,7 +66,7 @@ export default function HomePage({
 
         <div>
           <Suspense fallback={<EventListSkeleton />}>
-            <EventList searchParams={searchParams} />
+            <EventList searchParams={searchParamsRe} />
           </Suspense>
         </div>
       </section>

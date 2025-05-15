@@ -7,6 +7,7 @@ import PaginationControls from "./shared/PaginationControls";
 interface EventListProps {
     searchParams: {
         page?: string;
+        query?: string
     };
 }
 
