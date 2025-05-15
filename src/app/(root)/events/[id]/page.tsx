@@ -2,12 +2,8 @@ import { getEventById } from "@/lib/actions/event.actions";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
 
-type SearchParamProps = {
-    params: { id: string }
-}
-
-const EventDetails = async ({ params: { id } }: SearchParamProps) => {
-    const event = await getEventById(id);
+const EventDetails = async ({ params }: { params: { id: string } }) => {
+    const event = await getEventById(params.id);
 
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
