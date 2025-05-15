@@ -9,5 +9,5 @@ export interface IEvent {
     price?: string;
     isFree?: boolean;
     url?: string;
-    categoryName: string
+    categoryId: string
 }

@@ -83,7 +83,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
 
                         <FormField
                             control={form.control}
-                            name="categoryName"
+                            name="categoryId"
                             render={({ field }) => (
                                 <FormItem className="w-full">
                                     <FormControl>
