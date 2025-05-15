@@ -7,7 +7,14 @@ import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import EventList from "@/components/event-list"
 
-export default function HomePage() {
+export default function HomePage({
+  searchParams,
+}: {
+  searchParams: {
+    page?: string;
+    query?: string;
+  };
+}) {
   return (
     <main className="container mx-auto px-4 py-8">
       {/* Hero Section */}
@@ -27,27 +34,40 @@ export default function HomePage() {
 
       {/* Search & Filtering */}
       <section className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <form className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input placeholder="Search events..." className="pl-10" />
+            <Input
+              placeholder="Search events..."
+              className="pl-10"
+              name="query"
+              defaultValue={searchParams.query || ''}
+            />
           </div>
-        </div>
+          <Button type="submit">Search</Button>
+        </form>
       </section>
 
       {/* Event List */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Upcoming Events</h2>
-          <Button variant="outline" size="sm">
-            View All
-          </Button>
+          <h2 className="text-2xl font-bold">
+            {searchParams.query
+              ? `Search Results for "${searchParams.query}"`
+              : "Upcoming Events"}
+          </h2>
+          {searchParams.query && (
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/">Clear Search</Link>
+            </Button>
+          )}
         </div>
 
         <div>
           <Suspense fallback={<EventListSkeleton />}>
-            <EventList />
-          </Suspense></div>
+            <EventList searchParams={searchParams} />
+          </Suspense>
+        </div>
       </section>
     </main>
   )
