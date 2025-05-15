@@ -21,9 +21,9 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
+    const [isOpen, setOpen] = useState(false)
     const [categories, setCategories] = useState<ICategory[]>([])
     const [newCategory, setNewCategory] = useState("")
-    const [isOpen, setOpen] = useState(false)
     const handleAddCategory = () => {
         createCategory({
             categoryName: newCategory.trim()

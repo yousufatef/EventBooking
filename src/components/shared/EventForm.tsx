@@ -21,7 +21,6 @@ import { useUploadThing } from "@/lib/uploadthing";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "../ui/checkbox";
-import { handleError } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { createEvent } from "@/lib/actions/event.actions";
 
@@ -39,26 +38,32 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
 
 
     async function onSubmit(values: z.infer<typeof eventFormSchema>) {
-        if (files.length > 0) {
-            const uploadedImages = await startUpload(files);
-            if (!uploadedImages) {
-                return;
-            }
-            values.imageUrl = uploadedImages[0].url; // Update the imageUrl field directly
-        }
-        if (type === "create") {
-            try {
-                console.log(values);
+        let uploadedImageUrl = values.imageUrl;
 
-                const newEvent = await createEvent(values);
+        if (files.length > 0) {
+            const uploadedImages = await startUpload(files)
+
+            if (!uploadedImages) {
+                return
+            }
+
+            uploadedImageUrl = uploadedImages[0].url
+        }
+
+        if (type === 'create') {
+            try {
+                const newEvent = await createEvent({
+                    event: { ...values, imageUrl: uploadedImageUrl },
+                })
+
                 if (newEvent) {
-                    form.reset()
+                    form.reset();
                     router.push(`/events/${newEvent._id}`)
                 }
             } catch (error) {
-                handleError(error)
+                console.log(error);
             }
-        }
+        }  
 
     }
 
