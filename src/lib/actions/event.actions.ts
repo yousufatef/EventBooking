@@ -9,15 +9,10 @@ export const createEvent = async (values: IEvent) => {
     try {
         await connect();
 
-        const { categoryId, ...rest } = values;
 
-        if (!categoryId) {
-            throw new Error('categoryId is required');
-        }
 
         const newEvent = await Event.create({
-            ...rest,
-            category: categoryId, // ✅ mapping categoryId → category
+            values
         });
 
         return JSON.parse(JSON.stringify(newEvent));
