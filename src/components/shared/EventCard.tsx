@@ -36,14 +36,7 @@ export function EventCard({ event }: { event: IEvent }) {
                     height={256}
                 />
 
-                {/* Category badge positioned on image */}
-                <Badge
-                    variant="outline"
-                    className="absolute right-3 top-3 z-20 bg-white/90 backdrop-blur-sm hover:bg-white dark:bg-gray-900/90 dark:hover:bg-gray-800"
-                >
-                    {/* {event.categoryId} */}
-                    HTML
-                </Badge>
+        
 
                 {/* Price badge */}
                 <div className="absolute bottom-3 right-3 z-20">

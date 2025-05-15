@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { getEventById } from '@/lib/actions/event.actions'
@@ -16,11 +15,6 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                 </div>
 
                 <div>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        <Badge>{event.category}</Badge>
-                        {<Badge variant="secondary">Featured</Badge>}
-                    </div>
-
                     <h1 className="text-3xl md:text-4xl font-bold mb-6">{event.title}</h1>
                     <div className="ml-2 text-muted-foreground mb-6">
                         <p >{event.description}</p>
