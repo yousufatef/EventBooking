@@ -8,7 +8,7 @@ import { handleError } from "../utils"
 export const createEvent = async (event: CreateEventParams) => {
     try {
         await connect();
-        const newEvent = await Event.create({ ...event})
+        const newEvent = await Event.create({ ...event })
 
         return JSON.parse(JSON.stringify(newEvent));
     } catch (error) {
