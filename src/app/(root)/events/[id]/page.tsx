@@ -6,7 +6,7 @@ interface PageProps {
         id: string;
     };
 }
-const Page = async ({ params }: PageProps) => {
+const EventDetailsPage = async ({ params }: PageProps) => {
     const { id } = params;
     const event = await getEventById(id);
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
@@ -69,4 +69,4 @@ const Page = async ({ params }: PageProps) => {
     );
 };
 
-export default Page;
+export default EventDetailsPage;
