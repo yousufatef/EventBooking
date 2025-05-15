@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import EventFilters from "@/components/event-filters"
 import EventList from "@/components/event-list"
-import { mockEvents } from "@/lib/mock-data"
 
 export default function HomePage() {
   return (
@@ -47,9 +46,10 @@ export default function HomePage() {
           </Button>
         </div>
 
-        <Suspense fallback={<EventListSkeleton />}>
-          <EventList events={mockEvents} />
-        </Suspense>
+        <div>
+          <Suspense fallback={<EventListSkeleton />}>
+            <EventList />
+          </Suspense></div>
       </section>
     </main>
   )

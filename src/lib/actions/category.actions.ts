@@ -22,6 +22,8 @@ export const getAllCategories = async () => {
     try {
         await connect()
         const categories = await Category.find()
+        console.log(categories);
+        
         return JSON.parse(JSON.stringify(categories))
 
     }

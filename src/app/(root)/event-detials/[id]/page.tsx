@@ -17,7 +17,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
 
                 <div>
                     <div className="flex flex-wrap gap-2 mb-4">
-                        <Badge>HTML</Badge>
+                        <Badge>{event.category}</Badge>
                         {<Badge variant="secondary">Featured</Badge>}
                     </div>
 
