@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { eventFormSchema } from "@/lib/validator";
 import { eventDefaultValues } from "@/constants";
-import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
 import { FileUploader } from "./FileUploader";
 import { useState } from "react";
@@ -87,18 +86,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
                             )}
                         />
 
-                        <FormField
-                            control={form.control}
-                            name="categoryId"
-                            render={({ field }) => (
-                                <FormItem className="w-full">
-                                    <FormControl>
-                                        <Dropdown onChangeHandler={field.onChange} value={field.value} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                       
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-5">

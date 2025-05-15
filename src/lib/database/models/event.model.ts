@@ -42,7 +42,6 @@ const eventSchema = new mongoose.Schema({
     url: {
         type: String,
     },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
 }, { timestamps: true });
 
 
