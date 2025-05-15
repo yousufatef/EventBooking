@@ -53,7 +53,8 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
         if (type === 'create') {
             try {
                 const newEvent = await createEvent({
-                    event: { ...values, imageUrl: uploadedImageUrl },
+                    ...values,
+                    imageUrl: uploadedImageUrl,
                 })
 
                 if (newEvent) {
@@ -63,7 +64,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
             } catch (error) {
                 console.log(error);
             }
-        }  
+        }
 
     }
 

@@ -11,6 +11,3 @@ export interface IEvent {
     isFree: boolean
     url: string
 }
-export type CreateEventParams = {
-    event: IEvent
-}
