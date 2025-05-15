@@ -1,9 +1,12 @@
 import { getEventById } from "@/lib/actions/event.actions";
-import { SearchParamProps } from "@/types";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
-
-const Page = async ({ params }: SearchParamProps) => {
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+const Page = async ({ params }: PageProps) => {
     const { id } = params;
     const event = await getEventById(id);
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
