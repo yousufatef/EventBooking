@@ -6,6 +6,8 @@ import { getAllEventsDashboard } from "@/lib/actions/event.actions"
 import { useEffect, useState } from "react"
 import { IEvent } from "@/types/event.type"
 import { format } from "date-fns"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 
 
@@ -20,9 +22,14 @@ export default function EventsView() {
     })
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Events</CardTitle>
-                <CardDescription>Manage your upcoming and past events.</CardDescription>
+            <CardHeader className="flex justify-between items-center">
+                <div>
+                    <CardTitle>Events</CardTitle>
+                    <CardDescription>Manage your upcoming and past events.</CardDescription>
+                </div>
+                <Button>
+                    <Link href="dashboard/create-event">Create Event</Link>
+                </Button>
             </CardHeader>
             <CardContent>
                 <Table>
