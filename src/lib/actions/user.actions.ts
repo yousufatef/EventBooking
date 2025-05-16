@@ -41,6 +41,15 @@ export const getUserById = async (userId: string) => {
         handleError(error)
     }
 }
+export const getAllUsers = async () => {
+    try {
+        await connect()
+        const users = await User.find()
+        return users
+    } catch (error) {
+        handleError(error)
+    }
+}
 
 export const deleteUser = ({ id }: { id: string }) => {
     try {

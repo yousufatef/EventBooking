@@ -33,11 +33,11 @@ const Header = () => {
                                         <span>Home</span>
                                     </Link>
                                     <Link
-                                        href="/create-event"
+                                        href="/dashboard"
                                         className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
                                     >
                                         <Calendar className="h-8 w-8" />
-                                        <span>Create Event</span>
+                                        <span>Dashboard</span>
                                     </Link>
                                     <Link
                                         href="/orders/order-123"
@@ -60,10 +60,10 @@ const Header = () => {
                         Home
                     </Link>
                     <Link
-                        href="/create-event"
+                        href="/dashboard"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground"
                     >
-                        Create Event
+                        Dashboard
                     </Link>
                     <Link
                         href="/orders/order-123"
