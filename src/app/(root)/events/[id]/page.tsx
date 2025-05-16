@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { getEventById } from "@/lib/actions/event.actions";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -13,10 +14,12 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
 
     return (
         <section className="container py-10 lg:py-16  grid  grid-cols-1 md:grid-cols-2 gap-8 lg:gap-2 rounded-2xl overflow-hidden">
-            <img
+            <Image
                 src={event.imageUrl}
                 alt={event.title}
                 className="w-[500px] h-[500px] rounded-sm object-cover"
+                width={500}
+                height={500}
             />
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-4">
@@ -24,7 +27,7 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
                         <span className="bg-green-100 text-green-700 px-4 lg:px-6 py-[6px] rounded-[12px]">
                             {event.isFree ? "Free" : `$${event.price}`}
                         </span>
-            
+
                     </div>
                     <h2 className="text-3xl font-bold text-gray-900">{event.title}</h2>
                 </div>
@@ -82,3 +85,4 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
 };
 
 export default EventDetails;
+
