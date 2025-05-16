@@ -10,8 +10,8 @@ import { motion } from "framer-motion";
 export function EventCard({ event }: { event: IEvent }) {
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
-    const formattedPrice = event.isFree ? <span className="bg-green-500 px-4 lg:px-6 py-[6px] rounded-[12px] text-white">Free</span> :
-        <span className="bg-primary dark:bg-white px-4 lg:px-6 py-[6px] rounded-[12px] text-primary-foreground">${event.price}</span>
+    const formattedPrice = event.isFree ? <span className="bg-green-100 text-green-700 px-4 lg:px-6 py-[6px] rounded-[12px]">Free</span> :
+        <span className="bg-secondary text-green-700 px-4 lg:px-6 py-[6px] rounded-[12px]">${event.price}</span>
         ;
 
     return (
