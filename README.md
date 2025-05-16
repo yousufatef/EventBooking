@@ -15,7 +15,7 @@ A full-stack event booking platform that allows users to browse and book events,
 ### 🎨 Styling & UI
 - **Tailwind CSS** `^4`
 - **tw-animate-css** – Animation utilities for Tailwind
-- **next-themes** – Dark mode support
+- **next-themes** – Dark mode & light mode support
 - **clsx** & **class-variance-authority** – Utility class merging
 - **framer-motion** – Component animations
 - **lucide-react** – Icon set
@@ -51,25 +51,37 @@ A full-stack event booking platform that allows users to browse and book events,
 
 ## 📌 Features
 
-### 🔐 Authentication
-- User registration & login
-- Role-based access (User / Admin)
+### 👤 User Features
+- Register & log in via Clerk
+- View and manage personal bookings
+- View a detailed **User Profile**
+- Book events with a single click
+- View "Congratulations" screen after booking
+- Search for events on the **Home Page**
+- Grid/list view for event listings
+- Dark mode and light mode toggle
 
-### 🏠 User Interface
-- Grid layout of events on home page
-- Booked events marked as **"Booked"**
-- "Book Now" button available for unbooked events
-- Full event details and congratulations page
+### 🏠 Home Page
+- Grid view of events with responsive layout
+- Events already booked by user display **"Booked"** label
+- Non-booked events have **"Book Now"** button
+- Search bar to filter events by name or category
 
-### 🧾 Admin Panel
-- Admin access via role-based login
-- Create, Read, Update, Delete (CRUD) for events
+### 🧾 Admin Panel (Role: Admin)
+- Admin can:
+  - **Manage Events** (Create, Read, Update, Delete)
+  - **View All Users**
+  - **View All Bookings/Orders**
+- Admin panel is integrated within the same app
+- Role-based route protection (User vs Admin)
+- Clean UI using Radix components
 
 ### 🔁 API
 - RESTful API with routes for:
   - Authentication
   - Event management
-  - Bookings
+  - Booking management
+  - User management (admin only)
 
 ---
 
