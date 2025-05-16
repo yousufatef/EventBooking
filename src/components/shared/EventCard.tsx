@@ -1,22 +1,22 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { IEvent } from "@/types/event.type";
 import { Calendar, MapPin } from "lucide-react";
 import { format } from "date-fns";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export function EventCard({ event }: { event: IEvent }) {
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
-    const formattedPrice = event.isFree ? "FREE" : `$${event.price}`;
+    const formattedPrice = event.isFree ? <span className="bg-green-500 px-4 lg:px-6 py-[6px] rounded-[12px] text-white">Free</span> :
+        <span className="bg-primary dark:bg-white px-4 lg:px-6 py-[6px] rounded-[12px] text-primary-foreground">${event.price}</span>
+        ;
 
     return (
         <motion.div
-            className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-950"
+            className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-950"
             whileHover={{ y: -5 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,26 +38,16 @@ export function EventCard({ event }: { event: IEvent }) {
 
 
 
-                {/* Price badge */}
-                <div className="absolute bottom-3 right-3 z-20">
-                    <Badge
-                        variant={event.isFree ? "secondary" : "default"}
-                        className={cn(
-                            "px-3 py-1 font-bold shadow-md",
-                            event.isFree
-                                ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
-                                : "bg-gradient-to-r from-violet-600 to-primary hover:from-violet-700 hover:to-primary/90",
-                        )}
-                    >
-                        {formattedPrice}
-                    </Badge>
-                </div>
+
             </div>
 
             {/* Card content */}
             <div className="p-5">
                 <div className="mb-4">
-                    <h3 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{event.title}</h3>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-[18px] lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">{event.title}</h3>
+                        <span className="font-semibold text-[14px] lg:text-[16px]">{formattedPrice}</span>
+                    </div>
                     <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
                         {event.description || "Join us for an exciting event!"}
                     </p>
@@ -66,14 +56,14 @@ export function EventCard({ event }: { event: IEvent }) {
                 {/* Event details */}
                 <div className="mb-5 space-y-3">
                     <div className="flex items-center gap-2 text-sm">
-                        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/5">
                             <MapPin className="h-4 w-4 text-primary" />
                         </div>
                         <span className="text-gray-700 dark:text-gray-300">{event.location}</span>
                     </div>
                     <>
                         <div className="flex items-center gap-2 text-sm">
-                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10">
+                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/5">
                                 <Calendar className="h-4 w-4 text-primary" />
                             </div>
                             <span className="text-gray-700 dark:text-gray-300">{formattedStartDate} - {formattedEndDate}</span>
@@ -85,7 +75,7 @@ export function EventCard({ event }: { event: IEvent }) {
                 {/* Action button */}
                 <Button
                     asChild
-                    size="sm"
+                    size="lg"
                     className="relative w-full overflow-hidden"
                 >
                     <Link href={`/events/${event._id}`}>
