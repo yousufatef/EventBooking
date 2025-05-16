@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { handleError } from "@/lib/utils"
 import { ChevronLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface IUser {
     id: string;
@@ -20,13 +21,16 @@ interface IUser {
 
 export function UsersView() {
     const [users, setUsers] = useState<IUser[]>([])
+    const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
     useEffect(() => {
         const fetchUsers = async () => {
             try {
+                setIsLoading(true)
                 const res = await fetch('/api/user')
                 const data = await res.json()
                 setUsers(data)
+                setIsLoading(false)
             } catch (err) {
                 handleError(err)
             }
@@ -34,9 +38,6 @@ export function UsersView() {
 
         fetchUsers()
     }, [])
-    console.log(users);
-
-
 
     return (
         <div className="py-6">
@@ -58,28 +59,54 @@ export function UsersView() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {users.map((user) => (
-                                <TableRow key={user.id}>
-                                    <TableCell className="font-medium">
-                                        <div className="flex items-center gap-3">
-                                            <Avatar className="h-10 w-10">
-                                                <AvatarImage src={user.profilePicture || "/placeholder.svg"} alt={user.firstName} />
-                                                <AvatarFallback>{user.firstName.substring(0, 2).toUpperCase()}</AvatarFallback>
-                                            </Avatar>
-                                            <div>
-                                                <div className="font-medium">{user.firstName} {user.lastName}</div>
-                                                <div className="text-sm text-muted-foreground">{user.email}</div>
-                                            </div>
-                                        </div>
+                            {isLoading ? (
+                                // Show skeleton loader while loading
+                                <TableRow>
+                                    <TableCell colSpan={2}>
+                                        <UsersViewSkeleton />
                                     </TableCell>
-                                    <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
-
                                 </TableRow>
-                            ))}
+                            ) : (
+                                // Show actual data when loaded
+                                users.map((user) => (
+                                    <TableRow key={user.id}>
+                                        <TableCell className="font-medium">
+                                            <div className="flex items-center gap-3">
+                                                <Avatar className="h-10 w-10">
+                                                    <AvatarImage src={user.profilePicture || "/placeholder.svg"} alt={user.firstName} />
+                                                    <AvatarFallback>{user.firstName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                                                </Avatar>
+                                                <div>
+                                                    <div className="font-medium">{user.firstName} {user.lastName}</div>
+                                                    <div className="text-sm text-muted-foreground">{user.email}</div>
+                                                </div>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell>{user.isAdmin ? "Admin" : "User"}</TableCell>
+                                    </TableRow>
+                                ))
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>
             </Card>
+        </div>
+    )
+}
+
+const UsersViewSkeleton = () => {
+    return (
+        <div className="space-y-4">
+            {Array.from({ length: 5 }).map((_, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                    <div className="space-y-1">
+                        <Skeleton className="h-4 w-[150px]" />
+                        <Skeleton className="h-3 w-[100px]" />
+                    </div>
+
+                </div>
+            ))}
         </div>
     )
 }
