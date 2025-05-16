@@ -40,12 +40,12 @@ export default async function HomePage({
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
               placeholder="Search events..."
-              className="pl-10"
+              className="pl-10 py-5 lg:py-6"
               name="query"
               defaultValue={searchParamsRe.query || ''}
             />
           </div>
-          <Button type="submit">Search</Button>
+          <Button type="submit" className="py-5 lg:py-6">Search</Button>
         </form>
       </section>
 

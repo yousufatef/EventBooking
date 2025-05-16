@@ -28,7 +28,7 @@ const EventList = async ({ searchParams }: EventListProps) => {
     const { data: events, totalPages } = eventsData;
 
     return (
-        <div className="container py-8">
+        <div className="py-8">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
                 {events.map((event: IEvent) => (
                     <EventCard key={event._id} event={event} />

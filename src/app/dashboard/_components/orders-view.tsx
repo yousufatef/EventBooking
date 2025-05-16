@@ -1,6 +1,9 @@
+"use client"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useRouter } from "next/navigation"
+import { ChevronLeft } from "lucide-react"
 
 const orders = [
     {
@@ -41,48 +44,55 @@ const orders = [
 ]
 
 export function OrdersView() {
+    const router = useRouter()
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Orders</CardTitle>
-                <CardDescription>View and manage customer orders.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Order ID</TableHead>
-                            <TableHead>Customer</TableHead>
-                            <TableHead>Date</TableHead>
-                            <TableHead>Amount</TableHead>
-                            <TableHead>Status</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {orders.map((order) => (
-                            <TableRow key={order.id}>
-                                <TableCell className="font-medium">{order.id}</TableCell>
-                                <TableCell>{order.customer}</TableCell>
-                                <TableCell>{order.date}</TableCell>
-                                <TableCell>{order.amount}</TableCell>
-                                <TableCell>
-                                    <Badge
-                                        variant={
-                                            order.status === "Delivered"
-                                                ? "default"
-                                                : order.status === "Shipped"
-                                                ? "secondary"
-                                                : "outline"
-                                        }
-                                    >
-                                        {order.status}
-                                    </Badge>
-                                </TableCell>
+        <div className="py-6">
+            <div className="flex gap-1 items-center cursor-pointer mb-4" onClick={() => router.push("/")}>
+                <ChevronLeft className="h-6 w-6" />
+                <span className="font-semibold">Home</span>
+            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Orders</CardTitle>
+                    <CardDescription>View and manage customer orders.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Order ID</TableHead>
+                                <TableHead>Customer</TableHead>
+                                <TableHead>Date</TableHead>
+                                <TableHead>Amount</TableHead>
+                                <TableHead>Status</TableHead>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
+                        </TableHeader>
+                        <TableBody>
+                            {orders.map((order) => (
+                                <TableRow key={order.id}>
+                                    <TableCell className="font-medium">{order.id}</TableCell>
+                                    <TableCell>{order.customer}</TableCell>
+                                    <TableCell>{order.date}</TableCell>
+                                    <TableCell>{order.amount}</TableCell>
+                                    <TableCell>
+                                        <Badge
+                                            variant={
+                                                order.status === "Delivered"
+                                                    ? "default"
+                                                    : order.status === "Shipped"
+                                                        ? "secondary"
+                                                        : "outline"
+                                            }
+                                        >
+                                            {order.status}
+                                        </Badge>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+        </div>
     )
 }

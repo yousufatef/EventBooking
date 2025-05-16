@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 
 const Header = () => {
-    const {  user  } = useUser();
+    const { user } = useUser();
     return (
         <header className="sticky top-0 z-40 border-b bg-background">
             <div className="container flex h-16 items-center justify-between py-4">
@@ -22,29 +22,29 @@ const Header = () => {
                         <SheetContent side="left">
                             <div className="flex flex-col gap-2 py-4 p-6">
                                 <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-12">
-                                    <Calendar className="h-8 w-8" />
+                                    <Calendar className="h-6 w-6" />
                                     <span>EventHub</span>
                                 </Link>
                                 <nav className="flex flex-col gap-3">
                                     <Link
                                         href="/"
-                                        className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
+                                        className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-[18px] font-semibold mb-6"
                                     >
-                                        <Home className="h-8 w-8" />
+                                        <Home className="h-6 w-6" />
                                         <span>Home</span>
                                     </Link>
                                     {user && user.publicMetadata && user.publicMetadata.isAdmin ?
                                         (<Link
                                             href="/dashboard"
-                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
+                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-[18px] font-semibold mb-6"
                                         >
-                                            <Calendar className="h-8 w-8" />
+                                            <Calendar className="h-6 w-6" />
                                             <span>Dashboard</span>
                                         </Link>) : (<Link
                                             href="/orders/order-123"
-                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
+                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-[18px] font-semibold mb-6"
                                         >
-                                            <Ticket className="h-8 w-8" />
+                                            <Ticket className="h-6 w-6" />
                                             <span>My Tickets</span>
                                         </Link>)
                                     }
