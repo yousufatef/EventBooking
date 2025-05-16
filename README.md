@@ -74,7 +74,6 @@ A full-stack event booking platform that allows users to browse and book events,
   - **View All Bookings/Orders**
 - Admin panel is integrated within the same app
 - Role-based route protection (User vs Admin)
-- Clean UI using Radix components
 
 ### 🔁 API
 - RESTful API with routes for:
