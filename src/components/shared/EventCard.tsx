@@ -36,7 +36,7 @@ export function EventCard({ event }: { event: IEvent }) {
                     height={256}
                 />
 
-        
+
 
                 {/* Price badge */}
                 <div className="absolute bottom-3 right-3 z-20">
@@ -89,7 +89,7 @@ export function EventCard({ event }: { event: IEvent }) {
                     className="relative w-full overflow-hidden"
                 >
                     <Link href={`/events/${event._id}`}>
-                        <span className="relative z-10">Get Tickets</span>
+                        <span className="relative z-10">Book Now</span>
                         <motion.div
                             className="absolute inset-0 -z-0 bg-white"
                             initial={{ x: "-100%", opacity: 0.3 }}
