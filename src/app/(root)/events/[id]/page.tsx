@@ -12,7 +12,7 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
 
     return (
-        <section className="container grid  grid-cols-1 md:grid-cols-2 gap-8 lg:gap-2 rounded-2xl overflow-hidden">
+        <section className="container py-10 lg:py-16  grid  grid-cols-1 md:grid-cols-2 gap-8 lg:gap-2 rounded-2xl overflow-hidden">
             <img
                 src={event.imageUrl}
                 alt={event.title}
@@ -20,10 +20,11 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
             />
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-4">
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-between  gap-4">
                         <span className="bg-green-100 text-green-700 px-4 lg:px-6 py-[6px] rounded-[12px]">
                             {event.isFree ? "Free" : `$${event.price}`}
                         </span>
+            
                     </div>
                     <h2 className="text-3xl font-bold text-gray-900">{event.title}</h2>
                 </div>
