@@ -59,7 +59,7 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
                         className="mb-2"
                         size="lg"
                     >
-                        <Link href={`/events/${event._id}`}>
+                        <Link href={`/success`}>
                             <span>Book Now</span>
                         </Link>
                     </Button>
