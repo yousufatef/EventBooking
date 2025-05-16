@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
-import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface PaginationControlsProps {
     currentPage: number;
@@ -22,7 +22,7 @@ export default function PaginationControls({
                     currentPage <= 1 && "pointer-events-none opacity-50"
                 )}
             >
-                <ArrowBigLeftDash />
+                <ArrowLeft />
             </Link>
 
             {/* Page Numbers */}
@@ -49,7 +49,7 @@ export default function PaginationControls({
                     currentPage >= totalPages && "pointer-events-none opacity-50"
                 )}
             >
-                <ArrowBigRightDash />
+                <ArrowRight />
             </Link>
         </div>
     );

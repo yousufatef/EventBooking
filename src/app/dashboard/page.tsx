@@ -9,15 +9,19 @@ import {
     SidebarTrigger,
     SidebarInset,
     SidebarRail,
+    SidebarFooter,
 } from "@/components/ui/sidebar"
 import { DashboardNav } from "./_components/dashboard-nav"
 import { UsersView } from "./_components/users-view"
 import { OrdersView } from "./_components/orders-view"
 import EventsView from "./_components/events-view"
 import { ModeToggle } from "@/components/ModeToggle"
+import { ArrowLeftToLine } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function Dashboard() {
     const [activeView, setActiveView] = useState<"users" | "events" | "orders">("users")
+    const router = useRouter()
 
     return (
         <SidebarProvider>
@@ -32,7 +36,12 @@ export default function Dashboard() {
                     <SidebarContent>
                         <DashboardNav onNavigate={setActiveView} activeItem={activeView} />
                     </SidebarContent>
-
+                    <SidebarFooter className="border-t border-sidebar-border py-4">
+                        <div className="flex gap-2 justify-center items-center cursor-pointer" onClick={() => router.push("/")}>
+                            <span className="mb-1 font-semibold">Home</span>
+                            <ArrowLeftToLine className="h-6 w-6" />
+                        </div>
+                    </SidebarFooter>
                     <SidebarRail />
                 </Sidebar>
                 <SidebarInset>
@@ -48,6 +57,7 @@ export default function Dashboard() {
                         </main>
                     </div>
                 </SidebarInset>
+
             </div>
         </SidebarProvider>
     )

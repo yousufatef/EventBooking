@@ -1,12 +1,13 @@
+"use client"
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Calendar, Home, Menu, Ticket } from "lucide-react";
 import { ModeToggle } from "../ModeToggle";
 import { Button } from "../ui/button";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 
 const Header = () => {
+    const {  user  } = useUser();
     return (
         <header className="sticky top-0 z-40 border-b bg-background">
             <div className="container flex h-16 items-center justify-between py-4">
@@ -32,20 +33,22 @@ const Header = () => {
                                         <Home className="h-8 w-8" />
                                         <span>Home</span>
                                     </Link>
-                                    <Link
-                                        href="/dashboard"
-                                        className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
-                                    >
-                                        <Calendar className="h-8 w-8" />
-                                        <span>Dashboard</span>
-                                    </Link>
-                                    <Link
-                                        href="/orders/order-123"
-                                        className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
-                                    >
-                                        <Ticket className="h-8 w-8" />
-                                        <span>My Tickets</span>
-                                    </Link>
+                                    {user && user.publicMetadata && user.publicMetadata.isAdmin ?
+                                        (<Link
+                                            href="/dashboard"
+                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
+                                        >
+                                            <Calendar className="h-8 w-8" />
+                                            <span>Dashboard</span>
+                                        </Link>) : (<Link
+                                            href="/orders/order-123"
+                                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-xl font-semibold mb-6"
+                                        >
+                                            <Ticket className="h-8 w-8" />
+                                            <span>My Tickets</span>
+                                        </Link>)
+                                    }
+
                                 </nav>
                             </div>
                         </SheetContent>
@@ -59,18 +62,20 @@ const Header = () => {
                     <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground">
                         Home
                     </Link>
-                    <Link
-                        href="/dashboard"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                    >
-                        Dashboard
-                    </Link>
-                    <Link
-                        href="/orders/order-123"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                    >
-                        My Tickets
-                    </Link>
+                    {user && user.publicMetadata && user.publicMetadata.isAdmin ?
+                        (<Link
+                            href="/dashboard"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                        >
+                            Dashboard
+                        </Link>) : (<Link
+                            href="/orders/order-123"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                        >
+                            My Tickets
+                        </Link>)
+                    }
+
                 </nav>
                 <div className="flex items-center gap-4">
                     <ModeToggle />
@@ -84,7 +89,7 @@ const Header = () => {
                     </SignedIn>
                 </div>
             </div>
-        </header>
+        </header >
     )
 }
 

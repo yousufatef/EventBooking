@@ -1,4 +1,3 @@
-"use client"
 
 import { Users, Calendar, NotebookPen } from "lucide-react"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
@@ -29,6 +28,7 @@ export function DashboardNav({ onNavigate, activeItem }: DashboardNavProps) {
                     <span>Bookings</span>
                 </SidebarMenuButton>
             </SidebarMenuItem>
+           
         </SidebarMenu>
     )
 }
