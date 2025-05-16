@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function EventCard({ event }: { event: IEvent }) {
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
@@ -27,16 +28,15 @@ export function EventCard({ event }: { event: IEvent }) {
 
             {/* Image with overlay on hover */}
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <img
-                    src={event.imageUrl || "/placeholder.svg?height=400&width=600"}
+                <Image
+                    src={event.imageUrl}
                     alt={event.title}
                     className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     width={400}
                     height={256}
+                    priority
+                    unoptimized={event.imageUrl ? false : true}
                 />
-
-
 
 
             </div>
