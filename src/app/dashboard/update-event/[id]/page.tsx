@@ -1,9 +1,24 @@
 "use client";
 import EventForm from '@/components/shared/EventForm';
+import { getEventById } from '@/lib/actions/event.actions';
+import { IEvent } from '@/types/event.type';
 import { useUser } from '@clerk/nextjs';
-import React from 'react'
+import { useParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
 
 const UpdateEventPage = () => {
+    const params = useParams()
+    const { id } = params
+    const [event, setEvent] = useState<IEvent>()
+    useEffect(() => {
+        const getEvent = async () => {
+            if (typeof id === 'string') {
+                const event = await getEventById(id);
+                setEvent(event)
+            }
+        }
+        getEvent()
+    })
     const { isSignedIn, user, isLoaded } = useUser();
     if (!isLoaded) {
         return null
@@ -11,11 +26,11 @@ const UpdateEventPage = () => {
     if (isSignedIn && user.publicMetadata.isAdmin) {
         return (
             <>
-                <section className='bg-purple-50 py-5 md:py-10 '>
+                <section className=' py-5 md:py-10 '>
                     <h3 className="text-center sm:text-left text-2xl font-bold">Update Event</h3>
                 </section>
                 <div className="my-8">
-                    <EventForm type='edit' />
+                    {event && event._id && <EventForm type='edit' event={event} eventId={event._id} />}
                 </div>
             </>
         )

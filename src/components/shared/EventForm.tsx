@@ -21,12 +21,23 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "../ui/checkbox";
 import { useRouter } from "next/navigation";
-import { createEvent } from "@/lib/actions/event.actions";
+import { createEvent, updateEvent } from "@/lib/actions/event.actions";
+import { IEvent } from "@/types/event.type";
 
-const EventForm = ({ type }: { type: "create" | "edit" }) => {
+interface EventFormProp {
+    type: "create" | "edit";
+    event?: IEvent;
+    eventId?: string
+}
+
+const EventForm = ({ type, event, eventId }: EventFormProp) => {
     const router = useRouter()
     const [files, setFiles] = useState<File[]>([]);
-    const initialValues = eventDefaultValues;
+    const initialValues = event && type === "edit" ? {
+        ...event,
+        startDateTime: new Date(event.startDateTime),
+        endDateTime: new Date(event.endDateTime)
+    } : eventDefaultValues;
 
     const form = useForm<z.infer<typeof eventFormSchema>>({
         resolver: zodResolver(eventFormSchema),
@@ -49,6 +60,27 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
             uploadedImageUrl = uploadedImages[0].url
         }
 
+        if (type === 'edit') {
+            if (!eventId) {
+                router.back()
+                return;
+            }
+
+            try {
+                const updatedEvent = await updateEvent({
+                    ...values,
+                    imageUrl: uploadedImageUrl,
+                    _id: eventId,
+                })
+
+                if (updatedEvent) {
+                    form.reset();
+                    router.push(`/events/${updatedEvent._id}`)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
         if (type === 'create') {
             try {
                 const newEvent = await createEvent({
@@ -86,7 +118,7 @@ const EventForm = ({ type }: { type: "create" | "edit" }) => {
                             )}
                         />
 
-                       
+
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-5">

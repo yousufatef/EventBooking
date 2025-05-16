@@ -14,6 +14,7 @@ import { DashboardNav } from "./_components/dashboard-nav"
 import { UsersView } from "./_components/users-view"
 import { OrdersView } from "./_components/orders-view"
 import EventsView from "./_components/events-view"
+import { ModeToggle } from "@/components/ModeToggle"
 
 export default function Dashboard() {
     const [activeView, setActiveView] = useState<"users" | "events" | "orders">("users")
@@ -23,8 +24,9 @@ export default function Dashboard() {
             <div className="flex min-h-screen w-full">
                 <Sidebar>
                     <SidebarHeader className="border-b border-sidebar-border">
-                        <div className="flex h-16 items-center px-6">
+                        <div className="flex h-16 items-center px-3 justify-between">
                             <h2 className="text-lg font-semibold">Dashboard</h2>
+                            <ModeToggle />
                         </div>
                     </SidebarHeader>
                     <SidebarContent>
@@ -39,7 +41,7 @@ export default function Dashboard() {
                             <SidebarTrigger />
 
                         </header>
-                        <main className="flex-1 p-6">
+                        <main className="flex-1 px-6">
                             {activeView === "users" && <UsersView />}
                             {activeView === "events" && <EventsView />}
                             {activeView === "orders" && <OrdersView />}

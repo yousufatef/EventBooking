@@ -1,13 +1,13 @@
 "use client"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { getAllEventsDashboard } from "@/lib/actions/event.actions"
+import {  getAllEventsDashboard } from "@/lib/actions/event.actions"
 import { useEffect, useState } from "react"
 import { IEvent } from "@/types/event.type"
 import { format } from "date-fns"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import EventTableActions from "./EventTableActions"
 
 
 
@@ -42,21 +42,18 @@ export default function EventsView() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {events.map((event: IEvent) => (
-                            <TableRow key={event._id}>
-                                <TableCell className="font-medium">{event.title}</TableCell>
-                                <TableCell>{format(new Date(event.startDateTime), "PP")} - {format(new Date(event.endDateTime), "PP")}</TableCell>
-                                <TableCell>{event.location}</TableCell>
-                                <TableCell className="flex gap-2">
-                                    <Badge className="bg-red-500">
-                                        Delete
-                                    </Badge>
-                                    <Badge className="bg-green-500">
-                                        Update
-                                    </Badge>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                        {events
+                            .filter((event: IEvent) => typeof event._id === "string")
+                            .map((event: IEvent) => (
+                                <TableRow key={event._id}>
+                                    <TableCell className="font-medium">{event.title}</TableCell>
+                                    <TableCell>{format(new Date(event.startDateTime), "PP")} - {format(new Date(event.endDateTime), "PP")}</TableCell>
+                                    <TableCell>{event.location}</TableCell>
+                                    <TableCell className="flex gap-2">
+                                        <EventTableActions event={event} />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </CardContent>

@@ -16,6 +16,24 @@ export const createEvent = async (event: IEvent) => {
     handleError(error);
   }
 };
+export const updateEvent = async (event: IEvent) => {
+  try {
+    const eventToUpdate = await Event.findById(event._id)
+    if (!eventToUpdate) {
+      throw new Error('Event not found')
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event._id,
+      { ...event },
+      { new: true }
+    )
+
+    return JSON.parse(JSON.stringify(updatedEvent));
+  } catch (error) {
+    handleError(error);
+  }
+};
 
 
 
@@ -72,3 +90,13 @@ export const getAllEventsDashboard = async () => {
     handleError(error);
   }
 };
+
+export async function deleteEvent({ eventId }: { eventId: string }) {
+  try {
+    await connect()
+
+    await Event.findByIdAndDelete(eventId)
+  } catch (error) {
+    handleError(error)
+  }
+}
