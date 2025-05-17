@@ -1,11 +1,12 @@
 import { Suspense } from "react"
-import Link from "next/link"
+// import Link from "next/link"
 import { Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import EventList from "@/components/event-list"
+import Hero from "@/components/shared/Hero"
 
 export default async function HomePage({
   searchParams,
@@ -18,20 +19,7 @@ export default async function HomePage({
   const searchParamsRe = await searchParams
   return (
     <main className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="relative rounded-xl overflow-hidden mb-12">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 mix-blend-multiply" />
-        <div className="relative py-20 px-6 md:px-12 flex flex-col items-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover Events Near You</h1>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl">
-            Find and attend events that match your interests, connect with like-minded people, and create unforgettable
-            memories.
-          </p>
-          <Button size="lg" asChild>
-            <Link href="/create-event">Create Your Event</Link>
-          </Button>
-        </div>
-      </section>
+      <Hero />
 
       {/* Search & Filtering */}
       <section className="mb-8">
@@ -51,7 +39,7 @@ export default async function HomePage({
 
       {/* Event List */}
       <section>
-        <div className="flex justify-between items-center mb-6">
+        {/* <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">
             {searchParamsRe.query
               ? `Search Results for "${searchParamsRe.query}"`
@@ -62,7 +50,7 @@ export default async function HomePage({
               <Link href="/">Clear Search</Link>
             </Button>
           )}
-        </div>
+        </div> */}
 
         <div>
           <Suspense fallback={<EventListSkeleton />}>
