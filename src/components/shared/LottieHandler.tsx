@@ -1,3 +1,4 @@
+"use client"
 import Lottie from "lottie-react";
 import error from "@/assets/lottieFiles/error.json";
 import notFound from "@/assets/lottieFiles/notFound.json";
