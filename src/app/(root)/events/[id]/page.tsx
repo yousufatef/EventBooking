@@ -1,13 +1,16 @@
-import { Button } from "@/components/ui/button";
+import BookingBtn from "@/components/shared/BookingBtn";
+import { findUserFromClerkId } from "@/hooks/findUserFromClerkId";
+import { isEventBooked } from "@/lib/actions/booking.actions";
 import { getEventById } from "@/lib/actions/event.actions";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
     const event = await getEventById(id);
+    const { dbUserId } = await findUserFromClerkId()
+    const isBooked = await isEventBooked(dbUserId, id);
 
     const formattedStartDate = format(new Date(event.startDateTime), "PP");
     const formattedEndDate = format(new Date(event.endDateTime), "PP");
@@ -54,15 +57,7 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
 
                 </div>
                 <div>
-                    <Button
-                        asChild
-                        className="mb-2"
-                        size="lg"
-                    >
-                        <Link href={`/success`}>
-                            <span>Book Now</span>
-                        </Link>
-                    </Button>
+                    <BookingBtn eventId={id} userId={dbUserId} isBooked={isBooked} />
                     {event.url && (
                         <>
                             <div>

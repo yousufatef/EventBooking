@@ -79,7 +79,7 @@ export function EventCard({ event }: { event: IEvent }) {
                     className="relative w-full overflow-hidden"
                 >
                     <Link href={`/events/${event._id}`}>
-                        <span className="relative z-10">Book Now</span>
+                        Show More
                         <motion.div
                             className="absolute inset-0 -z-0 bg-white"
                             initial={{ x: "-100%", opacity: 0.3 }}
