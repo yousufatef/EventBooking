@@ -41,7 +41,7 @@ const Header = () => {
                                             <Calendar className="h-6 w-6" />
                                             <span>Dashboard</span>
                                         </Link>) : (<Link
-                                            href="/orders/order-123"
+                                            href="/my-tickets"
                                             className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-[18px] font-semibold mb-6"
                                         >
                                             <Ticket className="h-6 w-6" />
@@ -69,7 +69,7 @@ const Header = () => {
                         >
                             Dashboard
                         </Link>) : (<Link
-                            href="/orders/order-123"
+                            href="/my-tickets"
                             className="text-sm font-medium text-muted-foreground hover:text-foreground"
                         >
                             My Tickets

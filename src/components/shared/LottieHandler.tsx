@@ -3,11 +3,13 @@ import Lottie from "lottie-react";
 import error from "@/assets/lottieFiles/error.json";
 import notFound from "@/assets/lottieFiles/notFound.json";
 import success from "@/assets/lottieFiles/success.json";
+import empty from "@/assets/lottieFiles/empty.json";
 
 const lottieFilesMap = {
     notFound,
     error,
-    success
+    success,
+    empty
 };
 
 type LottieHandlerProps = {

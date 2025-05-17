@@ -3,7 +3,7 @@ import { Users, Calendar, NotebookPen } from "lucide-react"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
 
 interface DashboardNavProps {
-    onNavigate: (view: "users" | "events" | "orders") => void
+    onNavigate: (view: "users" | "events" | "bookings") => void
     activeItem: string
 }
 
@@ -23,7 +23,7 @@ export function DashboardNav({ onNavigate, activeItem }: DashboardNavProps) {
                 </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-                <SidebarMenuButton isActive={activeItem === "orders"} onClick={() => onNavigate("orders")}>
+                <SidebarMenuButton isActive={activeItem === "bookings"} onClick={() => onNavigate("bookings")}>
                     <NotebookPen className="h-4 w-4" />
                     <span>Bookings</span>
                 </SidebarMenuButton>

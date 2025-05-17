@@ -71,7 +71,7 @@ A full-stack event booking platform that allows users to browse and book events,
 - Admin can:
   - **Manage Events** (Create, Read, Update, Delete)
   - **View All Users**
-  - **View All Bookings/Orders**
+  - **View All Bookings/bookings**
 - Admin panel is integrated within the same app
 - Role-based route protection (User vs Admin)
 

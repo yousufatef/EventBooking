@@ -12,12 +12,12 @@ import {
 } from "@/components/ui/sidebar"
 import { DashboardNav } from "./_components/dashboard-nav"
 import { UsersView } from "./_components/users-view"
-import { OrdersView } from "./_components/orders-view"
+import { BookingsView } from "./_components/booking-view"
 import EventsView from "./_components/events-view"
 import { ModeToggle } from "@/components/ModeToggle"
 
 export default function Dashboard() {
-    const [activeView, setActiveView] = useState<"users" | "events" | "orders">("users")
+    const [activeView, setActiveView] = useState<"users" | "events" | "bookings">("users")
 
     return (
         <SidebarProvider>
@@ -33,7 +33,7 @@ export default function Dashboard() {
                         <DashboardNav onNavigate={setActiveView} activeItem={activeView} />
 
                     </SidebarContent>
-            
+
                     <SidebarRail />
                 </Sidebar>
                 <SidebarInset>
@@ -45,7 +45,7 @@ export default function Dashboard() {
                         <main className="flex-1 px-6">
                             {activeView === "users" && <UsersView />}
                             {activeView === "events" && <EventsView />}
-                            {activeView === "orders" && <OrdersView />}
+                            {activeView === "bookings" && <BookingsView />}
                         </main>
                     </div>
                 </SidebarInset>
