@@ -48,7 +48,7 @@ export function EventCard({ event }: { event: IEvent }) {
                         <h3 className="text-[18px] lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">{event.title}</h3>
                         <span className="font-semibold text-[14px] lg:text-[16px]">{formattedPrice}</span>
                     </div>
-                    <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400 overflow-hidden text-nowrap">
                         {event.description || "Join us for an exciting event!"}
                     </p>
                 </div>
