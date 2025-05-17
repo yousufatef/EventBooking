@@ -26,9 +26,7 @@ const UpdateEventPage = () => {
     if (isSignedIn && user.publicMetadata.isAdmin) {
         return (
             <>
-                <section className=' py-5 md:py-10 '>
-                    <h3 className="text-center sm:text-left text-2xl font-bold">Update Event</h3>
-                </section>
+
                 <div className="my-8">
                     {event && event._id && <EventForm type='edit' event={event} eventId={event._id} />}
                 </div>
