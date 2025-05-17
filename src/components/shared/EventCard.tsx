@@ -45,7 +45,7 @@ export function EventCard({ event }: { event: IEvent }) {
             <div className="p-5">
                 <div className="mb-4">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-[18px] lg:text-xl font-bold tracking-tight text-gray-900 dark:text-white">{event.title}</h3>
+                        <h3 className="text-[18px] lg:text-xl font-bold tracking-tight  text-gray-900 dark:text-white overflow-hidden text-nowrap">{event.title}</h3>
                         <span className="font-semibold text-[14px] lg:text-[16px]">{formattedPrice}</span>
                     </div>
                     <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400 overflow-hidden text-nowrap">

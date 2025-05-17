@@ -4,7 +4,6 @@ import { IEvent } from "@/types/event.type"
 import { connect } from "../database"
 import Event from "../database/models/event.model"
 import { handleError } from "../utils"
-import { GetAllEventsParams } from "@/types"
 
 export const createEvent = async (event: IEvent) => {
   try {
@@ -48,38 +47,31 @@ export const getEventById = async (eventId: string) => {
     handleError(error)
   }
 }
-export const getAllEvents = async ({
-  limit = 6,
-  page = 1
-}: GetAllEventsParams) => {
+export async function getAllEvents({ query, limit = 6, page = 1 }: { query?: string; limit?: number; page?: number }) {
   try {
     await connect();
 
-    const condition = {};
+    const titleCondition = query ? { title: { $regex: query, $options: 'i' } } : {};
+    const skipAmount = (Number(page) - 1) * limit;
 
-    // Calculate how many documents to skip
-    const skip = (page - 1) * limit;
-
-    const eventsQuery = Event.find(condition)
-      .sort({ createdAt: "desc" })
-      .skip(skip)
+    const eventsQuery = Event.find(titleCondition)
+      .sort({ createdAt: 'desc' })
+      .skip(skipAmount)
       .limit(limit);
 
-    const eventsCount = await Event.countDocuments(condition);
-
-    // Execute the query
-    const events = await eventsQuery.exec();
+    const events = await eventsQuery;
+    const eventsCount = await Event.countDocuments(titleCondition);
 
     return {
       data: JSON.parse(JSON.stringify(events)),
       totalPages: Math.ceil(eventsCount / limit),
-      currentPage: page,
-      totalEvents: eventsCount
     };
   } catch (error) {
     handleError(error);
   }
-};
+}
+
+
 export const getAllEventsDashboard = async () => {
   try {
     await connect();

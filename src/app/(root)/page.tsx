@@ -1,9 +1,4 @@
 import { Suspense } from "react"
-// import Link from "next/link"
-import { Search } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import EventList from "@/components/event-list"
 import Hero from "@/components/shared/Hero"
@@ -25,33 +20,13 @@ export default async function HomePage({
       <section className="mb-8">
         <form className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              placeholder="Search events..."
-              className="pl-10 py-5 lg:py-6"
-              name="query"
-              defaultValue={searchParamsRe.query || ''}
-            />
+           
           </div>
-          <Button type="submit" className="py-5 lg:py-6">Search</Button>
         </form>
       </section>
 
       {/* Event List */}
       <section>
-        {/* <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">
-            {searchParamsRe.query
-              ? `Search Results for "${searchParamsRe.query}"`
-              : "Upcoming Events"}
-          </h2>
-          {searchParamsRe.query && (
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/">Clear Search</Link>
-            </Button>
-          )}
-        </div> */}
-
         <div>
           <Suspense fallback={<EventListSkeleton />}>
             <EventList searchParams={searchParamsRe} />
