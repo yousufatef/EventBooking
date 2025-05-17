@@ -6,7 +6,9 @@ const nextConfig: NextConfig = {
       "utfs.io",
       "images.pexels.com",
       "unsplash.com",
-      "cdn.example.com",],
+      "images.unsplash.com", // You need to add this specifically
+      "cdn.example.com"
+    ],
   },
 };
 
