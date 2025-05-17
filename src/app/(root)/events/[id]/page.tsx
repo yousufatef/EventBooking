@@ -32,7 +32,7 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
                         </span>
 
                     </div>
-                    <h2 className="text-3xl font-bold text-gray-900">{event.title}</h2>
+                    <h2 className="text-3xl font-bold text-primary">{event.title}</h2>
                 </div>
                 <div className="flex flex-col gap-5 text-gray-700">
                     <div className="flex items-center gap-2 text-sm">
@@ -49,11 +49,11 @@ const EventDetails = async ({ params }: { params: Promise<{ id: string }> }) => 
                     </div>
                 </div>
                 <div className="flex flex-col gap-3">
-                    <h3 className="text-xl font-semibold text-gray-800">
-                        {"What You'll Learn"}
+                    <h3 className="text-xl font-semibold text-primary">
+                        {"What You'll See ?"}
                     </h3>
 
-                    <p className="text-gray-700 leading-relaxed">{event.description}</p>
+                    <p className="text-primary leading-relaxed">{event.description}</p>
 
                 </div>
                 <div>

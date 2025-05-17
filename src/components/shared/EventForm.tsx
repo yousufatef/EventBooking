@@ -279,7 +279,7 @@ const EventForm = ({ type, event, eventId }: EventFormProp) => {
                         className="w-full py-6 text-lg"
                         disabled={form.formState.isSubmitting}
                     >
-                        {form.formState.isSubmitting ? <> <Spinner /> Submitting...</> : `${type} event`}
+                        {form.formState.isSubmitting ? <> <Spinner /> Submitting</> : `${type} event`}
                     </Button>
                 </form>
             </Form>
