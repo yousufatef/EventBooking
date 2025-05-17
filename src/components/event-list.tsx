@@ -31,7 +31,7 @@ const EventList = async ({ searchParams }: EventListProps) => {
             {events.length === 0 ? (
                 <div className="text-center">
                     <LottieHandler type="empty" />
-                    <strong>No results for you search!</strong>
+                    <strong>No results for your search!</strong>
                 </div>
             ) : (
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
