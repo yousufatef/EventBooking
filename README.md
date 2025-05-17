@@ -21,6 +21,7 @@ A full-stack event booking platform that allows users to browse and book events,
 - **lucide-react** – Icon set
 - **Radix UI** components:
   - `@radix-ui/react-dialog`, `popover`, `tooltip`, `select`, `slider`, etc.
+- **Lottie** – For smooth, scalable animations to enhance user experience
 
 ### 📑 Forms & Validation
 - **react-hook-form** – React form state manager
@@ -56,7 +57,8 @@ A full-stack event booking platform that allows users to browse and book events,
 - View and manage personal bookings
 - View a detailed **User Profile**
 - Book events with a single click
-- View "Congratulations" screen after booking
+- View "Congratulations" screen after booking with engaging **Lottie animations**
+- Create and manage **tickets** for each booking
 - Search for events on the **Home Page**
 - Grid/list view for event listings
 - Dark mode and light mode toggle
@@ -71,7 +73,7 @@ A full-stack event booking platform that allows users to browse and book events,
 - Admin can:
   - **Manage Events** (Create, Read, Update, Delete)
   - **View All Users**
-  - **View All Bookings/bookings**
+  - **View All Bookings**
 - Admin panel is integrated within the same app
 - Role-based route protection (User vs Admin)
 
@@ -79,7 +81,7 @@ A full-stack event booking platform that allows users to browse and book events,
 - RESTful API with routes for:
   - Authentication
   - Event management
-  - Booking management
+  - Booking management (replaces order management terminology)
   - User management (admin only)
 
 ---
