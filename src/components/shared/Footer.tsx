@@ -12,7 +12,7 @@ const Footer = () => {
                         <span>EventHub</span>
                     </Link>
                     <p className="text-center text-sm text-muted-foreground md:text-left">
-                        &copy; {new Date().getFullYear()} EventHub. All rights reserved.
+                        &copy; {new Date().getFullYear()} Youssef Atef. All rights reserved.
                     </p>
                 </div>
                 <div className="flex gap-4">

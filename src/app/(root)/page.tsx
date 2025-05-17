@@ -16,15 +16,6 @@ export default async function HomePage({
     <main className="container mx-auto px-4 py-8">
       <Hero />
 
-      {/* Search & Filtering */}
-      <section className="mb-8">
-        <form className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="relative flex-1">
-           
-          </div>
-        </form>
-      </section>
-
       {/* Event List */}
       <section>
         <div>

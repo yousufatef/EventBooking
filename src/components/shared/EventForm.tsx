@@ -23,6 +23,7 @@ import { Checkbox } from "../ui/checkbox";
 import { useRouter } from "next/navigation";
 import { createEvent, updateEvent } from "@/lib/actions/event.actions";
 import { IEvent } from "@/types/event.type";
+import Spinner from "./Spinner";
 
 interface EventFormProp {
     type: "create" | "edit";
@@ -278,7 +279,7 @@ const EventForm = ({ type, event, eventId }: EventFormProp) => {
                         className="w-full py-6 text-lg"
                         disabled={form.formState.isSubmitting}
                     >
-                        {form.formState.isSubmitting ? "Submitting..." : `${type} event`}
+                        {form.formState.isSubmitting ? <> <Spinner /> Submitting...</> : `${type} event`}
                     </Button>
                 </form>
             </Form>

@@ -1,7 +1,7 @@
 export default function Hero() {
 
     return (
-        <section className="relative rounded-xl overflow-hidden mb-12">
+        <section className="relative rounded-xl overflow-hidden mb-8">
             {/* Simple gradient background */}
             <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.208_0.042_265.755)] to-[oklch(0.208_0.042_265.755/85%)] dark:from-[oklch(0.248_0.062_265.755)] dark:to-[oklch(0.208_0.042_265.755/95%)]" />
             {/* Simple content */}
