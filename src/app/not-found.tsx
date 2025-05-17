@@ -1,18 +1,18 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import Link from "next/link";
+import Link from "next/link"
 
 const LottieHandler = dynamic(() => import("@/components/shared/LottieHandler"), {
     ssr: false, // disables server-side rendering
 })
-const NotFound = () => {
 
+const NotFound = () => {
     return (
         <div className="container">
             <div
                 className="flex flex-col items-center"
-                style={{ marginTop: "15%" }}
+                style={{ marginTop: "10%" }}
             >
                 <LottieHandler type="notFound" />
                 <Link href="/" replace={true} className="underline">
@@ -20,7 +20,7 @@ const NotFound = () => {
                 </Link>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default NotFound;
+export default NotFound

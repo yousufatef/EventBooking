@@ -17,7 +17,10 @@ import EventsView from "./_components/events-view"
 import { ModeToggle } from "@/components/ModeToggle"
 import { useUser } from "@clerk/nextjs"
 import Link from "next/link"
-import LottieHandler from "@/components/shared/LottieHandler"
+import dynamic from "next/dynamic"
+const LottieHandler = dynamic(() => import("@/components/shared/LottieHandler"), {
+    ssr: false, // disables server-side rendering
+})
 
 export default function Dashboard() {
     const [activeView, setActiveView] = useState<"users" | "events" | "bookings">("users")

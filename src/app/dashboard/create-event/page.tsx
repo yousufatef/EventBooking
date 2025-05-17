@@ -1,9 +1,13 @@
 "use client";
 import EventForm from '@/components/shared/EventForm';
-import LottieHandler from '@/components/shared/LottieHandler';
 import { useUser } from '@clerk/nextjs';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react'
+
+const LottieHandler = dynamic(() => import("@/components/shared/LottieHandler"), {
+    ssr: false, // disables server-side rendering
+})
 
 const CreateEventPage = () => {
     const { isSignedIn, user, isLoaded } = useUser();
