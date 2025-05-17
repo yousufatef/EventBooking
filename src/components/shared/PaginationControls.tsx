@@ -33,7 +33,7 @@ export default function PaginationControls({
                         href={`?page=${pageNum}`}
                         className={cn(
                             buttonVariants({ variant: "outline" }),
-                            pageNum === currentPage && "bg-primary text-primary-foreground"
+                            pageNum === currentPage && "bg-primary text-primary-foreground dark:text-gray-400"
                         )}
                     >
                         {pageNum}
